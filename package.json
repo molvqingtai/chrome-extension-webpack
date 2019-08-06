@@ -1,0 +1,88 @@
+{
+  "name": "chrome-extension-template",
+  "version": "1.0.0",
+  "description": "ChromeExtension template for vue.js",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config build/webpack.dev.config.js",
+    "build": "webpack --config build/webpack.prod.config.js",
+    "lint": "eslint --ext .js,.vue src --fix; stylelint \"**/*.{html,vue,css,scss}\" --fix; exit 0",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "core-js": "^3.1.4",
+    "vue": "^2.6.10"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "babel-eslint": "^10.0.2",
+    "babel-loader": "^8.0.6",
+    "cache-loader": "^4.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.1.0",
+    "cssnano": "^4.1.10",
+    "eslint": "^6.1.0",
+    "eslint-config-standard": "^13.0.1",
+    "eslint-loader": "^2.2.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "fibers": "^4.0.1",
+    "file-loader": "^4.1.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "html-webpack-plugin": "^3.2.0",
+    "lint-staged": "^9.2.1",
+    "mini-css-extract-plugin": "^0.8.0",
+    "postcss-import": "^12.0.1",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-reporter": "^6.0.1",
+    "sass": "^1.22.9",
+    "sass-loader": "^7.1.0",
+    "stylelint": "^10.1.0",
+    "stylelint-config-standard": "^18.3.0",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "url-loader": "^2.1.0",
+    "vue-loader": "^15.7.1",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-extension-reloader": "^1.1.0",
+    "webpack-merge": "^4.2.1",
+    "yorkie": "^2.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e"
+  },
+  "lint-staged": {
+    "src/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "src/**/*.{css,scss,vue}": [
+      "stylelint --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/molvqingtai/chrome-extension-template.git"
+  },
+  "keywords": [
+    "chrome-extension",
+    "chrome",
+    "vue"
+  ],
+  "author": "molvqingtai",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/molvqingtai/chrome-extension-template/issues"
+  },
+  "homepage": "https://github.com/molvqingtai/chrome-extension-template#readme"
+}
