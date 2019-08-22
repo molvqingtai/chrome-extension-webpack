@@ -1,8 +1,8 @@
 const path = require('path')
 const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   entry: {
@@ -14,8 +14,15 @@ module.exports = {
   output: {
     publicPath: './',
     path: path.resolve(__dirname, '../dist'),
-    filename: 'js/[name].[hash].js',
-    chunkFilename: '[name].[hash].js'
+    filename: 'js/[name].[hash:6].js',
+    chunkFilename: '[name].[hash:6].js'
+  },
+  optimization: {
+    usedExports: true,
+    splitChunks: {
+      chunks: 'all',
+      name: 'vendors'
+    }
   },
   module: {
     rules: [
@@ -34,24 +41,14 @@ module.exports = {
         ]
       },
       {
-        test: /\.(png|jpe?g|gif|webp)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/,
         use: [
           {
             loader: 'url-loader',
             options: {
               limit: 4096,
-              name: 'images/[name].[hash].[ext]'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(svg)(\?.*)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'images/[name].[hash].[ext]'
+              name: '[name].[hash:6].[ext]',
+              outputPath: 'images'
             }
           }
         ]
@@ -63,7 +60,8 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 4096,
-              name: 'medias/[name].[hash].[ext]'
+              name: '[name].[hash:6].[ext]',
+              outputPath: 'medias'
             }
           }
         ]
@@ -75,7 +73,8 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 4096,
-              name: 'fonts/[name].[hash].[ext]'
+              name: '[name].[hash:6].[ext]',
+              outputPath: 'fonts'
             }
           }
         ]
@@ -89,31 +88,36 @@ module.exports = {
   },
   plugins: [
     new FriendlyErrorsWebpackPlugin(),
-    new CleanWebpackPlugin(),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       title: 'options',
       filename: 'options.html',
       template: 'public/index.html',
-      chunks: ['options']
+      chunks: ['options', 'vendors']
     }),
     new HtmlWebpackPlugin({
       title: 'popup',
       filename: 'popup.html',
       template: 'public/index.html',
-      chunks: ['popup']
+      chunks: ['popup', 'vendors']
     }),
     new HtmlWebpackPlugin({
       title: 'content',
       filename: 'content.html',
       template: 'public/index.html',
-      chunks: ['content']
+      chunks: ['content', 'vendors']
     }),
     new HtmlWebpackPlugin({
       title: 'background',
       filename: 'background.html',
       template: 'public/index.html',
-      chunks: ['background']
-    })
+      chunks: ['background', 'vendors']
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../public'),
+        to: path.resolve(__dirname, '../dist')
+      }
+    ])
   ]
 }

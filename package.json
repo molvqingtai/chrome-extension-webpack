@@ -1,16 +1,18 @@
 {
   "name": "chrome-extension-template",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "ChromeExtension template for vue.js",
-  "main": "index.js",
   "scripts": {
+    "serve": "webpack-dev-server --config build/webpack.dev.config.js",
     "dev": "webpack --config build/webpack.dev.config.js",
     "build": "webpack --config build/webpack.prod.config.js",
-    "lint": "eslint --ext .js,.vue src --fix; stylelint \"**/*.{html,vue,css,scss}\" --fix; exit 0",
+    "lint": "eslint --ext .js,.vue src --fix; stylelint \"src/**/*.{css,scss,vue}\" --fix; exit 0",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "core-js": "^3.1.4",
+    "axios": "^0.19.0",
+    "clipboard-polyfill": "^2.8.6",
     "vue": "^2.6.10"
   },
   "devDependencies": {
@@ -22,6 +24,8 @@
     "babel-loader": "^8.0.6",
     "cache-loader": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^5.0.4",
+    "core-js": "^3.1.4",
     "css-loader": "^3.1.0",
     "cssnano": "^4.1.10",
     "eslint": "^6.1.0",
@@ -51,9 +55,12 @@
     "vue-loader": "^15.7.1",
     "vue-template-compiler": "^2.6.10",
     "webpack": "^4.39.1",
+    "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.7.2",
     "webpack-extension-reloader": "^1.1.0",
     "webpack-merge": "^4.2.1",
+    "write-file-webpack-plugin": "^4.5.1",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {

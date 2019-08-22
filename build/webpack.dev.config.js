@@ -1,14 +1,22 @@
+const path = require('path')
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
 const Fiber = require('fibers')
 const Sass = require('sass')
-const StyleLintPlugin = require('stylelint-webpack-plugin')
-const ExtensionReloader = require('webpack-extension-reloader')
+const StylelintWebpackPlugin = require('stylelint-webpack-plugin')
+const WriteFileWebpackPlugin = require('write-file-webpack-plugin')
+// const WebpackExtensionReloader = require('webpack-extension-reloader')
 
 module.exports = merge(baseConfig, {
   mode: 'development',
   watch: true,
-  devtool: 'cheap-module-source-map',
+  devtool: 'source-map',
+  devServer: {
+    contentBase: path.join(__dirname, '../dist'),
+    host: '0.0.0.0',
+    open: true
+  },
   module: {
     rules: [
       {
@@ -54,10 +62,13 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
-    new StyleLintPlugin({
-      files: ['**/*.{html,vue,css,scss}'],
+    new StylelintWebpackPlugin({
+      files: ['src/**/*.{html,vue,css,scss}'],
       cache: true
-    })
-    // new ExtensionReloader()
+    }),
+    new WriteFileWebpackPlugin()
+    // new webpack.HotModuleReplacementPlugin()
+    // new WebpackExtensionReloader()
+
   ]
 })

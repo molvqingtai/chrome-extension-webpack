@@ -1,8 +1,10 @@
 const merge = require('webpack-merge')
 const baseConfig = require('./webpack.base.config')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const Fiber = require('fibers')
 const Sass = require('sass')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = merge(baseConfig, {
   mode: 'production',
@@ -15,7 +17,7 @@ module.exports = merge(baseConfig, {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1,
+              importLoaders: 2,
               modules: true
             }
           },
@@ -34,9 +36,15 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
+
     new MiniCssExtractPlugin({
-      filename: 'css/[name].[hash].css',
+      filename: 'css/[name].[hash:6].css',
       chunkFilename: '[id].css'
+    }),
+    new CleanWebpackPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false
     })
   ]
 })
