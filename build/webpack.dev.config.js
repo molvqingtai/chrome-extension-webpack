@@ -32,7 +32,7 @@ module.exports = merge(baseConfig, {
             loader: 'css-loader',
             options: {
               sourceMap: true,
-              importLoaders: 1,
+              importLoaders: 2,
               modules: true
             }
           },

@@ -15,7 +15,7 @@ module.exports = {
     publicPath: './',
     path: path.resolve(__dirname, '../dist'),
     filename: 'js/[name].[hash:6].js',
-    chunkFilename: '[name].[hash:6].js'
+    chunkFilename: 'js/[name].[hash:6].js'
   },
   optimization: {
     usedExports: true,

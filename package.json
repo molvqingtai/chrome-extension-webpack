@@ -1,6 +1,6 @@
 {
   "name": "chrome-extension-template",
-  "sideEffects": false,
+  "sideEffects": true,
   "version": "1.0.0",
   "description": "ChromeExtension template for vue.js",
   "scripts": {

@@ -13,7 +13,9 @@ module.exports = merge(baseConfig, {
       {
         test: /\.(css|scss)$/,
         use: [
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader
+          },
           {
             loader: 'css-loader',
             options: {
@@ -36,10 +38,9 @@ module.exports = merge(baseConfig, {
     ]
   },
   plugins: [
-
     new MiniCssExtractPlugin({
       filename: 'css/[name].[hash:6].css',
-      chunkFilename: '[id].css'
+      chunkFilename: 'css/[name].[hash:6].css'
     }),
     new CleanWebpackPlugin(),
     new BundleAnalyzerPlugin({
