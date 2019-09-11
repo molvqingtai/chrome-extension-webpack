@@ -12,6 +12,7 @@ module.exports = merge(baseConfig, {
     rules: [
       {
         test: /\.(css|scss)$/,
+        sideEffects: true,
         use: [
           {
             loader: MiniCssExtractPlugin.loader
@@ -24,15 +25,16 @@ module.exports = merge(baseConfig, {
             }
           },
           {
+            loader: 'postcss-loader'
+          },
+          {
             loader: 'sass-loader',
             options: {
               implementation: Sass,
               fiber: Fiber
             }
-          },
-          {
-            loader: 'postcss-loader'
           }
+
         ]
       }
     ]

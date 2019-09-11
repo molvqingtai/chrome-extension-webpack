@@ -1,5 +1,6 @@
 /**
  * https://cn.eslint.org/
+ * https://eslint.vuejs.org
  * @type {Object}
  */
 module.exports = {

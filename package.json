@@ -1,6 +1,5 @@
 {
   "name": "chrome-extension-template",
-  "sideEffects": true,
   "version": "1.0.0",
   "description": "ChromeExtension template for vue.js",
   "scripts": {
@@ -13,6 +12,7 @@
   "dependencies": {
     "axios": "^0.19.0",
     "clipboard-polyfill": "^2.8.6",
+    "lodash": "^4.17.15",
     "vue": "^2.6.10"
   },
   "devDependencies": {

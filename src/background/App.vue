@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import chunk from 'lodash/chunk'
 import clipboard from 'clipboard-polyfill'
 import qs from 'qs'
 import axios from 'axios'
@@ -37,6 +38,7 @@ export default {
     // import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
     //   console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
     // })
+    console.log(chunk(['a', 'b', 'c', 'd'], 2))
   },
   methods: {
     postMessage () {

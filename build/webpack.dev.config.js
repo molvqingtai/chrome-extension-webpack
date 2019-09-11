@@ -12,15 +12,16 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   watch: true,
   devtool: 'source-map',
-  devServer: {
-    contentBase: path.join(__dirname, '../dist'),
-    host: '0.0.0.0',
-    open: true
-  },
+  // devServer: {
+  //   contentBase: path.join(__dirname, '../dist'),
+  //   host: '0.0.0.0',
+  //   open: true
+  // },
   module: {
     rules: [
       {
         test: /\.(css|scss)$/,
+        sideEffects: true,
         use: [
           {
             loader: 'vue-style-loader',
@@ -37,27 +38,21 @@ module.exports = merge(baseConfig, {
             }
           },
           {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
             loader: 'sass-loader',
             options: {
               sourceMap: true,
               implementation: Sass,
               fiber: Fiber
             }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true
-            }
           }
 
         ]
-      },
-      {
-        enforce: 'pre',
-        test: /\.(js|vue)$/,
-        exclude: /node_modules/,
-        use: ['eslint-loader']
       }
     ]
   },
