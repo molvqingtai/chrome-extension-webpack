@@ -12,11 +12,6 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   watch: true,
   devtool: 'source-map',
-  // devServer: {
-  //   contentBase: path.join(__dirname, '../dist'),
-  //   host: '0.0.0.0',
-  //   open: true
-  // },
   module: {
     rules: [
       {
