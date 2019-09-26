@@ -15,9 +15,17 @@
       "64": "icons/icon-64.png"
     }
   },
-
   "author": "molvqingtai",
   "background": {
     "page": "background.html"
-  }
+  },
+  "content_scripts":[
+    {
+      "matches": ["*://127.0.0.1/*"],
+      "js": [
+        "js/vendors.js",
+        "js/content.js"
+      ]
+    }
+  ]
 }

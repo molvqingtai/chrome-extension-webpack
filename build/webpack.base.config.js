@@ -14,8 +14,11 @@ module.exports = {
   output: {
     publicPath: './',
     path: path.resolve(__dirname, '../dist'),
-    filename: 'js/[name].[hash:6].js',
-    chunkFilename: 'js/[name].[hash:6].js'
+    // filename: 'js/[name].[hash:6].js',
+    // chunkFilename: 'js/[name].[hash:6].js'
+
+    filename: 'js/[name].js',
+    chunkFilename: 'js/[name].js'
   },
   optimization: {
     usedExports: true,
@@ -47,7 +50,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 4096,
+              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'images'
             }
@@ -60,7 +63,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 4096,
+              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'medias'
             }
@@ -73,7 +76,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 4096,
+              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'fonts'
             }
@@ -108,12 +111,12 @@ module.exports = {
       template: 'public/index.html',
       chunks: ['popup', 'vendors']
     }),
-    new HtmlWebpackPlugin({
-      title: 'content',
-      filename: 'content.html',
-      template: 'public/index.html',
-      chunks: ['content', 'vendors']
-    }),
+    // new HtmlWebpackPlugin({
+    //   title: 'content',
+    //   filename: 'content.html',
+    //   template: 'public/index.html',
+    //   chunks: ['content', 'vendors']
+    // }),
     new HtmlWebpackPlugin({
       title: 'background',
       filename: 'background.html',
