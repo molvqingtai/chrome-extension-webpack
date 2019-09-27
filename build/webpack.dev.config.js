@@ -19,9 +19,13 @@ module.exports = merge(baseConfig, {
         sideEffects: true,
         use: [
           {
-            loader: 'vue-style-loader',
+            loader: 'style-loader',
             options: {
-              sourceMap: true
+              // sourceMap: true,
+              insert: (element) => {
+                console.log(element)
+                return document.body
+              }
             }
           },
           {

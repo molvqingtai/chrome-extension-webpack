@@ -1,5 +1,4 @@
 const path = require('path')
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -97,8 +96,9 @@ module.exports = {
     ]
   },
   plugins: [
-    new FriendlyErrorsWebpackPlugin(),
-    new VueLoaderPlugin(),
+    new VueLoaderPlugin({
+      shadowMode: true
+    }),
     new HtmlWebpackPlugin({
       title: 'options',
       filename: 'options.html',
