@@ -2,6 +2,11 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const Fiber = require('fibers')
+const Sass = require('sass')
+const webpack = require('webpack')
+const { createHash } = require('crypto')
+const HASH = createHash('sha256').update(Math.random().toString()).digest('hex').slice(0, 8)
 
 module.exports = {
   entry: {
@@ -41,6 +46,43 @@ module.exports = {
               }
             }
           }
+        ]
+      },
+      {
+        test: /\.(css|scss)$/,
+        sideEffects: true,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              attributes: {
+                'data-style-id': HASH
+              }
+            }
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              importLoaders: 2,
+              modules: true
+            }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true
+            }
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              implementation: Sass,
+              fiber: Fiber
+            }
+          }
+
         ]
       },
       {
@@ -128,6 +170,9 @@ module.exports = {
         from: path.resolve(__dirname, '../public'),
         to: path.resolve(__dirname, '../dist')
       }
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      'process.env.HASH': JSON.stringify(HASH)
+    })
   ]
 }

@@ -14,7 +14,7 @@ export default {
     }
   },
   mounted () {
-    console.log('挂载成功！')
+    console.log(process.env.HASH)
   }
 }
 </script>
@@ -22,5 +22,9 @@ export default {
 <style lang="scss" scoped>
   h1 {
     color: blue;
+  }
+
+  img {
+    width: 50%;
   }
 </style>
