@@ -2,10 +2,12 @@ const path = require('path')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const WebpackBuildNotifierPlugin = require('webpack-build-notifier')
 const Fiber = require('fibers')
 const Sass = require('sass')
 const webpack = require('webpack')
 const { createHash } = require('crypto')
+
 const HASH = createHash('sha256').update(Math.random().toString()).digest('hex').slice(0, 8)
 
 module.exports = {
@@ -173,6 +175,7 @@ module.exports = {
     ]),
     new webpack.DefinePlugin({
       'process.env.HASH': JSON.stringify(HASH)
-    })
+    }),
+    new WebpackBuildNotifierPlugin()
   ]
 }
