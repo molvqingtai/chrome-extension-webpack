@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="">
     <h1>{{ msg }}</h1>
-    <!--     <img src="../assets/images/test.png">
-<img src="../assets/images/icon-32.png"> -->
+    <img src="../assets/images/test.png">
+    <img src="../assets/images/icon-32.png">
   </div>
 </template>
 

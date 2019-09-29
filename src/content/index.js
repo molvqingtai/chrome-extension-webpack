@@ -9,4 +9,4 @@ const app = new Vue({
 new Wc({
   app: app,
   name: 'chrome-extension'
-}).mount(document.body)
+}).mount('body')

@@ -10,7 +10,18 @@ const { createHash } = require('crypto')
 
 const HASH = createHash('sha256').update(Math.random().toString()).digest('hex').slice(0, 8)
 
-module.exports = {
+const htmlWebpackPluginConfig = ({ entry, ignore, chunks }) => {
+  return Object.keys(entry).filter(name => !ignore.includes(name)).map(name => {
+    return new HtmlWebpackPlugin({
+      title: name,
+      filename: `${name}.html`,
+      template: 'public/index.html',
+      chunks: [...chunks, name]
+    })
+  })
+}
+
+const commonConfig = {
   entry: {
     popup: './src/popup/index.js',
     options: './src/options/index.js',
@@ -20,14 +31,13 @@ module.exports = {
   output: {
     publicPath: './',
     path: path.resolve(__dirname, '../dist'),
-    // filename: 'js/[name].[hash:6].js',
+    // filename: 'js/[name].[hash:6].js',7
     // chunkFilename: 'js/[name].[hash:6].js'
 
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].js'
   },
   optimization: {
-    usedExports: true,
     splitChunks: {
       chunks: 'all',
       name: 'vendors'
@@ -61,25 +71,20 @@ module.exports = {
                 'data-style-id': HASH
               }
             }
-          },
+          },
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
               importLoaders: 2,
               modules: true
             }
           },
           {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true
-            }
+            loader: 'postcss-loader'
           },
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
               implementation: Sass,
               fiber: Fiber
             }
@@ -93,7 +98,6 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'images'
             }
@@ -106,7 +110,6 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'medias'
             }
@@ -119,7 +122,6 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 9999999,
               name: '[name].[hash:6].[ext]',
               outputPath: 'fonts'
             }
@@ -140,33 +142,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin({
-      shadowMode: true
-    }),
-    new HtmlWebpackPlugin({
-      title: 'options',
-      filename: 'options.html',
-      template: 'public/index.html',
-      chunks: ['options', 'vendors']
-    }),
-    new HtmlWebpackPlugin({
-      title: 'popup',
-      filename: 'popup.html',
-      template: 'public/index.html',
-      chunks: ['popup', 'vendors']
-    }),
-    // new HtmlWebpackPlugin({
-    //   title: 'content',
-    //   filename: 'content.html',
-    //   template: 'public/index.html',
-    //   chunks: ['content', 'vendors']
-    // }),
-    new HtmlWebpackPlugin({
-      title: 'background',
-      filename: 'background.html',
-      template: 'public/index.html',
-      chunks: ['background', 'vendors']
-    }),
+    new VueLoaderPlugin(),
     new CopyWebpackPlugin([
       {
         from: path.resolve(__dirname, '../public'),
@@ -179,3 +155,14 @@ module.exports = {
     new WebpackBuildNotifierPlugin()
   ]
 }
+
+commonConfig.plugins = [
+  ...commonConfig.plugins,
+  ...htmlWebpackPluginConfig({
+    entry: commonConfig.entry,
+    ignore: ['content'],
+    chunks: ['vendors']
+  })
+]
+
+module.exports = commonConfig
