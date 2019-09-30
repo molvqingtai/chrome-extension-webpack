@@ -36,7 +36,7 @@ export default {
   width: 700px;
   padding: 100px;
   position: fixed;
-  top: 20vw;
+  top: 20vh;
   left: calc(50vw - 450px);
   z-index: 999;
   cursor: grab;
