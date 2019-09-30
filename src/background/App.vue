@@ -1,32 +1,22 @@
 <template lang="html">
-  <div class="">
-    <h1>{{ msg }}</h1>
-    <img src="../assets/images/test.png">
-    <img src="../assets/images/icon-32.png">
+  <div id="app" class="app">
+    <v-title></v-title>
+    <v-desc></v-desc>
+    <v-logo></v-logo>
   </div>
 </template>
 
 <script>
 import browser from 'webextension-polyfill'
-import chunk from 'lodash/chunk'
+import VTitle from './component/V-Title.vue'
+import VDesc from './component/V-Desc.vue'
+import VLogo from './component/V-Logo.vue'
 export default {
   name: 'Background',
-  data () {
-    return {
-      msg: 'Hi,I am the background page.',
-      value: ''
-    }
-  },
-  mounted () {
-    browser.browserAction.onClicked.addListener(this.handleIconClick)
-    console.log('挂载成功！')
-    // console.log([['0', 'a'], ['1', 'b'], ['2', 'c']].flat())
-    // console.log(Object.fromEntries([['0', 'a'], ['1', 'b'], ['2', 'c']]))
-    //
-    // import(/* webpackChunkName: "lodash" */ 'lodash').then(({ default: _ }) => {
-    //   console.log(_.chunk(['a', 'b', 'c', 'd'], 2))
-    // })
-    console.log(chunk(['a', 'b', 'c', 'd'], 2))
+  components: {
+    VTitle,
+    VDesc,
+    VLogo
   },
   methods: {
     handleIconClick (e) {
@@ -38,12 +28,18 @@ export default {
         console.log(err)
       })
     }
+  },
+  mounted () {
+    browser.browserAction.onClicked.addListener(this.handleIconClick)
   }
-
 }
 </script>
-<style lang="css" scoped>
-img {
-  max-width: 50%;
+<style lang="scss" scoped>
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  white-space: nowrap;
 }
 </style>

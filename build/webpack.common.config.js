@@ -8,7 +8,7 @@ const Sass = require('sass')
 const webpack = require('webpack')
 const { createHash } = require('crypto')
 
-const HASH = createHash('sha256').update(Math.random().toString()).digest('hex').slice(0, 8)
+const HASH = createHash('md5').update(Math.random().toString()).digest('hex').slice(0, 8)
 
 const htmlWebpackPluginConfig = ({ entry, ignore, chunks }) => {
   return Object.keys(entry).filter(name => !ignore.includes(name)).map(name => {
@@ -43,6 +43,14 @@ const commonConfig = {
       name: 'vendors'
     }
   },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, '../src'),
+      images: '@/assets/images',
+      styles: '@/assets/styles',
+      fonts: '@/assets/fonts'
+    }
+  },
   module: {
     rules: [
       {
@@ -75,8 +83,7 @@ const commonConfig = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 2,
-              modules: true
+              importLoaders: 2
             }
           },
           {
@@ -132,12 +139,10 @@ const commonConfig = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
-          'babel-loader', {
-            loader: 'eslint-loader',
-            options: {
-              fix: true
-            }
-          }]
+          {
+            loader: 'babel-loader'
+          }
+        ]
       }
     ]
   },

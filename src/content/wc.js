@@ -4,8 +4,8 @@ class CustomElement extends HTMLElement {
   constructor (el) {
     super()
     const shadow = this.attachShadow({ mode: 'open' })
-    const style = document.querySelector(`style[data-style-id='${process.env.HASH}']`)
-    shadow.appendChild(style)
+    const styles = document.querySelectorAll(`style[data-style-id='${process.env.HASH}']`)
+    shadow.append(...styles)
     shadow.appendChild(el)
   }
 }

@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "ChromeExtension template for vue.js",
   "scripts": {
-    "serve": "webpack-dev-server --config build/webpack.dev.config.js",
-    "dev": "webpack --config build/webpack.dev.config.js",
-    "build": "webpack --config build/webpack.prod.config.js",
-    "lint": "eslint --ext .js,.vue src --fix; stylelint \"src/**/*.{css,scss,vue}\" --fix; exit 0",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run lint && webpack --config build/webpack.dev.config.js",
+    "build": "npm run lint && webpack --config build/webpack.prod.config.js",
+    "lint": "eslint \"src/**/*.{js,vue}\" --fix & stylelint \"src/**/*.{css,scss,vue}\" --fix & exit 0"
   },
   "dependencies": {
     "@webcomponents/webcomponentsjs": "^2.3.0",
     "axios": "^0.19.0",
     "clipboard-polyfill": "^2.8.6",
+    "draggable-vue-directive": "^2.0.6",
     "lodash": "^4.17.15",
     "vue": "^2.6.10",
     "webextension-polyfill": "^0.4.0"
@@ -30,13 +29,13 @@
     "core-js": "^3.1.4",
     "css-loader": "^3.1.0",
     "cssnano": "^4.1.10",
-    "eslint": "^6.1.0",
-    "eslint-config-standard": "^13.0.1",
+    "eslint": "^6.5.0",
+    "eslint-config-standard": "^14.1.0",
     "eslint-loader": "^2.2.1",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-standard": "^4.0.1",
     "eslint-plugin-vue": "^5.2.3",
     "fibers": "^4.0.1",
     "file-loader": "^4.1.0",

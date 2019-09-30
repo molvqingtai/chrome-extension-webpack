@@ -1,30 +1,44 @@
 <template lang="html">
-  <div class="">
-    <h1>{{ msg }}</h1>
-    <img src="../assets/images/test.png">
+  <div id="app" class="app" v-draggable>
+    <v-title></v-title>
+    <v-desc></v-desc>
+    <v-logo></v-logo>
   </div>
 </template>
 
 <script>
+import { Draggable } from 'draggable-vue-directive'
+import VTitle from './component/V-Title.vue'
+import VDesc from './component/V-Desc.vue'
+import VLogo from './component/V-Logo.vue'
 export default {
-  name: 'Content',
-  data () {
-    return {
-      msg: 'Hi,I am the content page.'
-    }
+  name: 'app',
+  directives: {
+    Draggable
   },
-  mounted () {
-    console.log(process.env.HASH)
+  components: {
+    VTitle,
+    VDesc,
+    VLogo
   }
 }
 </script>
 
 <style lang="scss" scoped>
-  h1 {
-    color: blue;
-  }
-
-  img {
-    width: 50%;
-  }
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  box-shadow: 0 0 10px 0 #ddd;
+  white-space: nowrap;
+  border-radius: 5px;
+  width: 700px;
+  padding: 100px;
+  position: fixed;
+  top: 20vw;
+  left: calc(50vw - 450px);
+  z-index: 999;
+  cursor: grab;
+}
 </style>

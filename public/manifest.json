@@ -1,9 +1,9 @@
 {
-  "name": "chrome-extension-template",
+  "name": "chrome-extension-webpack",
   "manifest_version": 2,
   "version": "1.0.0",
 
-  "description": "ChromeExtension template for vue.js",
+  "description": "Chrome extension webpack 4.x for vue.js",
   "icons": {
     "64": "icons/icon-64.png",
     "128": "icons/icon-128.png"
@@ -21,7 +21,7 @@
   },
   "content_scripts":[
     {
-      "matches": ["*://127.0.0.1/*"],
+      "matches": ["<all_urls>"],
       "js": [
         "js/vendors.js",
         "js/content.js"
