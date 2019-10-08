@@ -1,23 +1,30 @@
 <template lang="html">
-  <h1>{{ msg }}</h1>
+  <div id="app" class="app">
+    <v-title>Chrome-Extension-Webpack</v-title>
+    <v-desc>Hi,I am the option page.</v-desc>
+    <v-logo></v-logo>
+  </div>
 </template>
 
 <script>
+import VTitle from '../components/V-Title.vue'
+import VDesc from '../components/V-Desc.vue'
+import VLogo from '../components/V-Logo.vue'
 export default {
-  name: 'Options',
-  data () {
-    return {
-      msg: 'Hi,I am the options page.'
-    }
-  },
-  mounted () {
-    console.log('挂载成功！')
+  name: 'app',
+  components: {
+    VTitle,
+    VDesc,
+    VLogo
   }
 }
 </script>
-
 <style lang="scss" scoped>
-h1 {
-  color: red;
+.app {
+  white-space: nowrap;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>

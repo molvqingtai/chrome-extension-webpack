@@ -3,7 +3,7 @@ import '@webcomponents/webcomponentsjs'
 class CustomElement extends HTMLElement {
   constructor (el) {
     super()
-    const shadow = this.attachShadow({ mode: 'open' })
+    const shadow = this.attachShadow({ mode: 'closed' })
     const styles = document.querySelectorAll(`style[data-style-id='${process.env.HASH}']`)
     shadow.append(...styles)
     shadow.appendChild(el)

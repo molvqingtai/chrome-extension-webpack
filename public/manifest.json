@@ -2,7 +2,7 @@
   "name": "chrome-extension-webpack",
   "manifest_version": 2,
   "version": "1.0.0",
-
+  "author": "molvqingtai",
   "description": "Chrome extension webpack 4.x for vue.js",
   "icons": {
     "64": "icons/icon-64.png",
@@ -13,15 +13,19 @@
       "16": "icons/icon-16.png",
       "32": "icons/icon-32.png",
       "64": "icons/icon-64.png"
-    }
+    },
+    "default_title":"Open popup page.",
+    "default_popup":"popup.html"
   },
-  "author": "molvqingtai",
+  "options_ui":{
+    "page":"options.html"
+  },
   "background": {
     "page": "background.html"
   },
   "content_scripts":[
     {
-      "matches": ["<all_urls>"],
+      "matches": ["http://127.0.0.1:8080/"],
       "js": [
         "js/vendors.js",
         "js/content.js"

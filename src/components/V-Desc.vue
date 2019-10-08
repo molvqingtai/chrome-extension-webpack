@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="desc">
-    <h2>Hi,I am the background page.</h2>
+    <h2>
+      <slot></slot>
+    </h2>
   </div>
 </template>
 

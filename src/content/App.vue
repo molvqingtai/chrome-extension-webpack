@@ -1,16 +1,19 @@
 <template lang="html">
   <div id="app" class="app" v-draggable>
-    <v-title></v-title>
-    <v-desc></v-desc>
+    <v-title>Chrome-Extension-Webpack</v-title>
+    <v-desc>Hi,I am the content page.</v-desc>
     <v-logo></v-logo>
+    <v-button @click="handleClick">Open background page</v-button>
   </div>
 </template>
 
 <script>
+import browser from 'webextension-polyfill'
 import { Draggable } from 'draggable-vue-directive'
-import VTitle from './component/V-Title.vue'
-import VDesc from './component/V-Desc.vue'
-import VLogo from './component/V-Logo.vue'
+import VTitle from '../components/V-Title.vue'
+import VDesc from '../components/V-Desc.vue'
+import VLogo from '../components/V-Logo.vue'
+import VButton from '../components/V-Button.vue'
 export default {
   name: 'app',
   directives: {
@@ -19,12 +22,19 @@ export default {
   components: {
     VTitle,
     VDesc,
-    VLogo
+    VLogo,
+    VButton
+  },
+  methods: {
+    handleClick (e) {
+      browser.runtime.sendMessage('background.html')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
 .app {
   display: flex;
   align-items: center;

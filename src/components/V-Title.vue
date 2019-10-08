@@ -1,6 +1,8 @@
 <template lang="html">
   <div class="title">
-    <h1>Chrome-Extension-Webpack</h1>
+    <h1>
+      <slot></slot>
+    </h1>
   </div>
 </template>
 
