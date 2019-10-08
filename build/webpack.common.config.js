@@ -31,7 +31,7 @@ const commonConfig = {
   output: {
     publicPath: './',
     path: path.resolve(__dirname, '../dist'),
-    // filename: 'js/[name].[hash:6].js',7
+    // filename: 'js/[name].[hash:6].js',
     // chunkFilename: 'js/[name].[hash:6].js'
 
     filename: 'js/[name].js',
