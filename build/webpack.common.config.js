@@ -37,6 +37,10 @@ const commonConfig = {
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].js'
   },
+  stats: {
+    modules: false,
+    entrypoints: false
+  },
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -79,7 +83,8 @@ const commonConfig = {
                 'data-style-id': HASH
               }
             }
-          },
+          },
+
           {
             loader: 'css-loader',
             options: {

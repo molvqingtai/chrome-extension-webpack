@@ -14,18 +14,20 @@
       "32": "icons/icon-32.png",
       "64": "icons/icon-64.png"
     },
-    "default_title":"Open popup page.",
-    "default_popup":"popup.html"
+    "default_title": "Open popup page.",
+    "default_popup": "popup.html"
   },
-  "options_ui":{
-    "page":"options.html"
+  "options_ui": {
+    "page": "options.html"
   },
   "background": {
     "page": "background.html"
   },
-  "content_scripts":[
+  "content_scripts": [
     {
-      "matches": ["http://127.0.0.1:8080/"],
+      "matches": [
+        "<all_urls>"
+      ],
       "js": [
         "js/vendors.js",
         "js/content.js"
